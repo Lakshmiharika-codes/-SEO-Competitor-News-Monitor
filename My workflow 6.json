@@ -1,0 +1,618 @@
+{
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -704,
+        32
+      ],
+      "id": "a0783fc4-ef5a-494e-8c6b-b03bc027b6b2",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://ntvtelugu.com/feed",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -368,
+        -176
+      ],
+      "id": "640351d2-1a26-4b47-b733-0e7686cda121",
+      "name": "competitor a"
+    },
+    {
+      "parameters": {
+        "url": "https://www.thehindu.com/news/national/feeder/default.rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -368,
+        16
+      ],
+      "id": "e90a787c-2fc3-4e65-8c2f-13edf034e044",
+      "name": "competitor b"
+    },
+    {
+      "parameters": {
+        "url": "https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -368,
+        192
+      ],
+      "id": "0b1ead4f-9be6-4204-bea3-cbe919365b50",
+      "name": "competitor c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "feef1a96-3098-4ce2-bdd6-60969bb30b4c",
+              "name": "competitor",
+              "value": "Eenadu",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -144,
+        -176
+      ],
+      "id": "f085b00f-acd2-406f-8d8b-617961266d99",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0604fedc-69e2-4d38-a68a-fcb99085d5fc",
+              "name": "competitor",
+              "value": "The Hindu",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -144,
+        16
+      ],
+      "id": "3923ad53-2a3a-4706-a078-926768f4cb00",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "28070955-4144-4c37-8143-f438415882cd",
+              "name": "competitor",
+              "value": "Times Of India",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -144,
+        192
+      ],
+      "id": "63b93534-def3-4195-9d92-8c7759558f2f",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "24db6d5c-87a5-49f7-a99f-8f5a2f0f470a",
+              "leftValue": "={{ new Date($json.isoDate || $json.pubDate) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        96,
+        -176
+      ],
+      "id": "57bad3d7-c32d-4c99-adfa-677c6afd6973",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5201dad1-9d6f-4d45-a967-736f643f50f3",
+              "leftValue": "={{ new Date($json.isoDate || $json.pubDate) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        16
+      ],
+      "id": "c264e7d1-cdfc-42c7-b6b9-fd7ee21a9406",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e20fa5b3-7e34-4bc2-a743-e13a4cbf8f81",
+              "leftValue": "={{ new Date($json.isoDate || $json.pubDate) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        96,
+        192
+      ],
+      "id": "839efff7-b772-4a54-9628-f26faedfc164",
+      "name": "If2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        432,
+        -112
+      ],
+      "id": "07dcad8a-1ca2-474d-9763-eaae47ef81f8",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        448,
+        160
+      ],
+      "id": "af984327-97d2-4a47-922d-24bda0d68b1c",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=={{ $json.contentSnippet || $json.content || $json.description || $json.title }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Summarize this competitor news update.  Competitor: {{ $json.competitor }} Title: {{ $json.title }} URL: {{ $json.link }} Content: {{ $json.contentSnippet || $json.content || $json.description }}  Return: - Category - Short summary - Why it matters for SEO"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        672,
+        160
+      ],
+      "id": "a35df07c-f26c-4232-a777-107640ed67f2",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        672,
+        368
+      ],
+      "id": "a0e37ebc-a0b1-4042-9ad7-f6d3469b79b7",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "text",
+              "renameField": true,
+              "outputFieldName": "summaries"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        960,
+        160
+      ],
+      "id": "d28cb084-7c05-4d54-801a-1242ca930204",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=={{ $json.summaries.join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Create a concise weekly competitor intelligence email from the updates below.  Use this structure:  # Weekly Competitor Intelligence Briefing  ## Top developments - List the 3–5 most important developments and why they matter.  ## SEO and content signals - Identify important topics, keywords, content formats, or search-intent patterns.  ## Product, pricing, and business changes - Include only meaningful changes.  ## Recommended actions 1. Give 3 specific actions our marketing or SEO team should consider.  Rules: - Be concise and professional. - Do not invent facts. - Use only the information provided. - If there are no meaningful updates, say:   \"No significant competitor updates this week.\"  Updates: {{ $json.summaries.join('\\n\\n') }}"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1136,
+        160
+      ],
+      "id": "aa2dc713-b393-48a4-8360-e55137bdfe99",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1136,
+        336
+      ],
+      "id": "3bf5d6bd-5ed1-4092-b9b5-9fc2bc0f01ae",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "vempatipriya061@gmail.com",
+        "subject": "Weekly competitor Intelligence Briefing",
+        "emailType": "text",
+        "message": "={{ $json.text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        160
+      ],
+      "id": "848f51fa-d259-4733-bc56-10ce49d15b88",
+      "name": "Send a message",
+      "webhookId": "e8d47e3f-96f5-43ec-8a24-f00976eb05e1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CxlcDWcEIjq29fD4",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "competitor a",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "competitor b",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "competitor c",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "competitor a": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "competitor b": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "competitor c": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "6d255b59-00a6-4463-8924-040debcc1fff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1afb0abbc4d1e99f4b4f447fee3bded24c39de36962a5f4174bd35e99e7a3db1"
+  },
+  "nodeGroups": [],
+  "id": "VdOwrWXaHqlhLoYw",
+  "tags": []
+}
